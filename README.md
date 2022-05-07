@@ -23,12 +23,12 @@ vagrant up
 192.168.56.2 workspace.development-server workspace.development-server.local
 192.168.56.2 webapps.development-server webapps.development-server.local
 ```
-Alternatively you can use the `makefile` command run as root.
+Alternatively you can use the [`makefile`](makefile) command run as root.
 ```bash
 sudo make update-hosts-file
 ```
 
-**4.** Install [Launch Agent](launch-agend.plist) to `~/Library/LaunchAgents` with `makefile` command.
+**4.** Install [Launch Agent](launch-agend.plist) to `~/Library/LaunchAgents` with [`makefile`](makefile) command.
 ```bash
 make install-launch-agent
 ```
