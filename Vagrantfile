@@ -33,7 +33,4 @@ Vagrant.configure("2") do |config|
 
   # Run shell script for provisioning.
   config.vm.provision :shell, path: "bootstrap.sh"
-
-  # Display start message.
-  config.vm.post_up_message = BOX_MESSAGE
 end
