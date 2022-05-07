@@ -23,18 +23,23 @@ vagrant up
 192.168.56.2 workspace.development-server workspace.development-server.local
 192.168.56.2 webapps.development-server webapps.development-server.local
 ```
-Alternatively you can use the `makefile` command.
+Alternatively you can use the `makefile` command run as root.
 ```bash
-make update-hosts-file
+sudo make update-hosts-file
 ```
 
 **4.** Install [Launch Agent](launch-agend.plist) to `~/Library/LaunchAgents` with `makefile` command.
 ```bash
 make install-launch-agent
 ```
-To remove the [Launch Agent](launch-agend.plist)  in the future use.
+To remove the [Launch Agent](launch-agend.plist) at any time you can use the follwing command.
 ```bash
 make remove-launch-agent
+```
+
+**5.** Install terminal command `development-server` to ssh into virtual machine.
+```bash
+sudo make install-ssh-command
 ```
 
 ## VM Info

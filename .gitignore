@@ -6,3 +6,4 @@
 
 # Local created files during installation.
 development-server.autostart.plist
+ssh.sh
