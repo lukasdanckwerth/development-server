@@ -22,10 +22,13 @@ apt-get install --assume-yes \
     apache2 \
     docker.io docker-compose
 
+log "Add user vagrant to group docker"
+usermod -aG docker vagrant
+
 log "Install composer"
 pushd /tmp/
 curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
+mv composer.phar /usr/local/bin/composer
 popd
 if [[ -f "/usr/local/bin/composer" ]]; then
     log "Successfully installed composer"
