@@ -124,4 +124,9 @@ echo "
 
 a2ensite 000-development-server.local.conf
 
+log "Customize .profile"
+echo "" >> /home/vagrant/.profile
+echo "cd /srv/Developer" >> /home/vagrant/.profile
+
+log "Reboot"
 reboot
