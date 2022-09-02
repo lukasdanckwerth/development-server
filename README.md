@@ -12,7 +12,7 @@
 **1.** Clone repository und change directory.
 
 ```
-git clone git@github.com:lukasdanckwerth/development-server.git \
+git clone --recurse-submodules git@github.com:lukasdanckwerth/development-server.git \
 && cd development-server
 ```
 

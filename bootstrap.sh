@@ -47,12 +47,12 @@ fi
 # === -------------------------------------------------------------- ===
 log "Install apache"
 
-# pushd /home/vagrant/apache
+# pushd /srv/apache
 # docker-compose up -d
 # popd
 
-# pushd /home/vagrant/traefik
-# docker network create web
+# pushd /srv/traefik
+# docker network create traefik
 # docker-compose up -d
 # popd
 
