@@ -4,7 +4,7 @@
 BOX_BASE = "ubuntu/focal64"
 BOX_NAME = "development-server"
 BOX_RAM_MB = "2048"
-BOX_CPU_COUNT = "2"
+BOX_CPU_COUNT = "1"
 BOX_IP = "192.168.56.2"
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
@@ -20,6 +20,8 @@ Vagrant.configure("2") do |config|
   # Disable default `/vagrant` directory synchronization.
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "~/Developer", "/srv/Developer", create: true
+  config.vm.synced_folder "./assets/apache", "/srv/apache", create: true
+  config.vm.synced_folder "./submodules/docker-traefik", "/srv/traefik", create: true
 
   config.vm.provider "virtualbox" do |v|
     v.name = BOX_NAME

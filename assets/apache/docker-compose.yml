@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  apache2:
+    image: httpd:2.4-alpine
+    container_name: apache2
+    restart: always
+    volumes:
+      - /srv/Developer:/srv/Developer
+      - ./index.html:/usr/local/apache2/htdocs/index.html
+      - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
+    labels:
+      - traefik.http.routers.apache.rule=Host(`development-server`)
+      - traefik.http.routers.webapps.rule=Host(`webapps.development-server`)
+      - traefik.http.routers.workspace.rule=Host(`workspace.development-server`)
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
