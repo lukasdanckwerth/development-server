@@ -9,6 +9,7 @@ services:
       - ./index.html:/usr/local/apache2/htdocs/index.html
       - ./httpd.conf:/usr/local/apache2/conf/httpd.conf
     labels:
+      - traefik.enable=true
       - traefik.http.routers.apache.rule=Host(`development-server`)
       - traefik.http.routers.webapps.rule=Host(`webapps.development-server`)
       - traefik.http.routers.workspace.rule=Host(`workspace.development-server`)

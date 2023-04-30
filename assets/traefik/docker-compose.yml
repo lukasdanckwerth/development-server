@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  reverse-proxy:
+    image: "traefik:2.8"
+    restart: "always"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.toml:/traefik.toml"
+    networks:
+      - web
+
+networks:
+  traefik:
+    external: true

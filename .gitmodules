@@ -1,3 +1,0 @@
-[submodule "submodules/docker-traefik"]
-	path = submodules/docker-traefik
-	url = git@github.com:lukasdanckwerth/docker-traefik.git
