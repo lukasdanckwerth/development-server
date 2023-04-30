@@ -3,7 +3,7 @@ set -u
 set -e
 
 log() {
-  echo && echo -e "[bootstrap]  ${*}" && echo
+    echo && echo -e "[bootstrap]  ${*}" && echo
 }
 
 # === -------------------------------------------------------------- ===
@@ -27,6 +27,7 @@ apt-get install --assume-yes \
     docker-compose
 
 apt-get remove apache2 --assume-yes
+apt-get autoremove --assume-yes
 
 # === -------------------------------------------------------------- ===
 log "Add user vagrant to group docker"
@@ -45,21 +46,23 @@ else
 fi
 
 # === -------------------------------------------------------------- ===
+log "Install traefik"
+docker network create traefik || true
+pushd /srv/traefik
+docker-compose up -d
+popd
+
+# === -------------------------------------------------------------- ===
 log "Install apache"
 
-# pushd /srv/apache
-# docker-compose up -d
-# popd
-
-# pushd /srv/traefik
-# docker network create traefik
-# docker-compose up -d
-# popd
+pushd /srv/apache
+docker-compose up -d
+popd
 
 # === -------------------------------------------------------------- ===
 log "Customize .profile"
-echo "" >> /home/vagrant/.profile
-echo "cd /srv/Developer" >> /home/vagrant/.profile
+echo "" >>/home/vagrant/.profile
+echo "cd /srv/Developer" >>/home/vagrant/.profile
 
 log "Reboot"
 reboot

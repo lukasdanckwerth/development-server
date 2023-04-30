@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder "~/Developer", "/srv/Developer", create: true
   config.vm.synced_folder "./assets/apache", "/srv/apache", create: true
-  config.vm.synced_folder "./submodules/docker-traefik", "/srv/traefik", create: true
+  config.vm.synced_folder "./assets/traefik", "/srv/traefik", create: true
 
   config.vm.provider "virtualbox" do |v|
     v.name = BOX_NAME
@@ -34,5 +34,5 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.56.2"
 
   # Run shell script for provisioning.
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, path: "assets/bootstrap.sh"
 end

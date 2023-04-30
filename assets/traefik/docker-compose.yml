@@ -1,16 +1,28 @@
 version: "3.7"
 services:
-  reverse-proxy:
-    image: "traefik:2.8"
-    restart: "always"
+  traefik:
+    image: traefik:2.8.8
+    container_name: traefik
+    restart: always
+    command:
+      - "--global.checkNewVersion=true"
+      - "--global.sendAnonymousUsage=false"
+      - "--log.level=warning"
+
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+
+      - "--providers.docker=true"
+      - "--providers.docker.watch=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik"
     ports:
-      - "80:80"
-      - "8080:8080"
+      - 80:80
+      - 443:443
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./traefik.toml:/traefik.toml"
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - web
+      - traefik
 
 networks:
   traefik:
