@@ -1,9 +1,14 @@
 version: "3.7"
 services:
   traefik:
-    image: traefik:2.8.8
+    image: traefik:2.10.1
     container_name: traefik
     restart: always
+    labels:
+      - "traefik.http.routers.api.rule=Host(`traefik.development-server`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.entrypoints=web"
+      - "traefik.enable=true"
     command:
       - "--global.checkNewVersion=true"
       - "--global.sendAnonymousUsage=false"
@@ -16,6 +21,9 @@ services:
       - "--providers.docker.watch=true"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=traefik"
+
+      - "--entryPoints.web.forwardedHeaders.insecure"
+      - "--api.dashboard=true"
     ports:
       - 80:80
       - 443:443
